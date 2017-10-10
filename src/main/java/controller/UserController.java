@@ -19,6 +19,10 @@ import java.io.IOException;
 @WebServlet("/users")
 public class UserController extends HttpServlet {
     private UserService userService;
+
+    public UserController(){
+        userService = new UserServiceImpl();
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
@@ -34,7 +38,6 @@ public class UserController extends HttpServlet {
         user.setUsername(username);
         if (!StringUtil.isEmpty(gender)) user.setGender(Integer.parseInt(gender));
 
-        userService = new UserServiceImpl();
         Pager<User> pager = userService.getUsers(user,currentPage,showNums);
 
         req.setAttribute("pager",pager);

@@ -11,9 +11,11 @@ import util.StringUtil;
  */
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
+    public UserServiceImpl(){
+        userDao = new UserDaoImpl();
+    }
     @Override
     public Pager<User> getUsers(User searchModel, int currentPage, int showNums) {
-        userDao = new UserDaoImpl();
         if (!StringUtil.isNum(String.valueOf(currentPage))) currentPage=Pager.CURRENTPAGE;
         if (!StringUtil.isNum(String.valueOf(showNums))) showNums = Pager.SHOWNUMS;
         return userDao.getUsers(searchModel,currentPage,showNums);

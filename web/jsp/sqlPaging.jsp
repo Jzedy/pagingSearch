@@ -28,7 +28,7 @@
             load_first_page: false,
             callback:handlePaginationClick
         });
-        $('.gender').val("${gender}")
+        $('#gender').val("${gender}")
     })
 </script>
 <body>
